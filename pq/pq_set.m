@@ -1,21 +1,22 @@
-% function pq = pq_set(pq, id, priority)
+% function pq = pq_set(pq, id, f)
 % /**
-%      * Reset the priority of an element, or insert it if it's not
+%      * Reset the f of an element, or insert it if it's not
 %      * already there.
 %      * @param id The element ID.
-%      * @param priority The element priority.
+%      * @param f The element f.
 %      */
-% By Yang Gu, 2006, ported from Geoff's pathplan code
-function pq = pq_set(pq, id, priority, parent)
+% Adapted from Yang Gu, 2006, ported from Geoff's pathplan code
+
+function pq = pq_set(pq, id, g, f, parent)
 
     elemID = pq.directory(id);
     if elemID == pq.emptyID
-        pq = pq_insert(pq, id, priority, parent);
-    elseif pq.priorities(elemID) < priority
-        pq.priorities(elemID) = priority;
+        pq = pq_insert(pq, id, g, f, parent);
+    elseif pq.f(elemID) < f
+        pq.f(elemID) = f;
         pq= pq_percolateDown(pq, elemID);
     else
-        pq.priorities(elemID) = priority;
+        pq.f(elemID) = f;
         pq = pq_percolateUp(pq, elemID);
     end
     

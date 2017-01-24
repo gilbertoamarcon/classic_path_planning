@@ -6,10 +6,10 @@
 function pq = pq_percolateDown(pq, i)
     child = i*2;
     while (child < pq.size)
-        if (child < pq.size - 1 & pq.priorities(child) > pq.priorities(child + 1))
+        if (child < pq.size - 1 & pq.f(child) > pq.f(child + 1))
             child = child + 1;
         end
-        if ( pq.priorities(i) <= pq.priorities(child))
+        if ( pq.f(i) <= pq.f(child))
             break;
         end
         pq = pq_swap(pq, i, child);

@@ -10,9 +10,13 @@ function pq = pq_swap(pq, i, j)
     pq.ids(j) = pq.ids(i);
     pq.ids(i) = swapi;
 
-    swapd = pq.priorities(j);
-    pq.priorities(j) = pq.priorities(i);
-    pq.priorities(i) = swapd;
+    swapg = pq.g(j);
+    pq.g(j) = pq.g(i);
+    pq.g(i) = swapg;
+
+    swapf = pq.f(j);
+    pq.f(j) = pq.f(i);
+    pq.f(i) = swapf;
 
     swapp = pq.parents(j);
     pq.parents(j) = pq.parents(i);
@@ -20,4 +24,5 @@ function pq = pq_swap(pq, i, j)
     
     pq.directory(pq.ids(i)) = i;
     pq.directory(pq.ids(j)) = j;
+
 end

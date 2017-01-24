@@ -17,8 +17,11 @@ function pq = pq_init(limit)
     % Element directory 
     pq.directory = pq.emptyID*ones(1, pq.maxsize);
 
-    % Priority
-    pq.priorities = zeros(1, limit);
+    % Estimated path cost
+    pq.f = zeros(1, limit);
+
+    % Cost to reach from start node
+    pq.g = zeros(1, limit);
     
     % Pointer to parent
     pq.parents = zeros(1, limit);

@@ -3,9 +3,10 @@ close all;
 clc;
 
 % Global parameters
-FILE_NAME	= 'maze1.pgm';
+FILE_NAME	= 'maze2.pgm';
 LIST_LIM	= 10000;
 IT_LIM      = 10000;
+HEU_INFLA   = 1.00;
 
 % Libraries
 addpath(genpath('2D'));
@@ -27,7 +28,8 @@ closed = pq_init(LIST_LIM);
 open = pq_init(LIST_LIM);
 
 % Starting node on open list
-open = pq_set(open,start,0,0);
+h = manhattan(start, goal, map);
+open = pq_set(open,start,0,h,0);
 
 % Search loop
 for i=1:IT_LIM
@@ -39,14 +41,15 @@ for i=1:IT_LIM
     
     % Getting best node from open list attributes
     node = open.ids(1);
-    node_g = pq_priority(open, node);
+    node_g = pq_g(open, node);
+    node_f = pq_f(open, node);
     node_parent = pq_parent(open, node);
 
     % Popping best node from open list
     open = pq_pop(open);
     
     % Inserting expanded node into the closed list
-    closed = pq_insert(closed,node,node_g,node_parent);
+    closed = pq_insert(closed,node,node_g,node_f,node_parent);
     
     % Path found 
     if node == goal
@@ -60,21 +63,27 @@ for i=1:IT_LIM
     % For each child neighbor
     for child = nbrs'
         
-        % Child cost
-        g = node_g+1;
-        
         % If child on closed list, drop it
         if pq_test(closed, child) == 1
             continue;
         end
         
-        % If child on open list with lower cost, drop it
-        if pq_test(open, child) == 1 && g > pq_priority(open, child)
+        % If child on open list with lower cost to reach, drop it
+        if pq_test(open, child) == 1 && g > pq_g(open, child)
             continue;
         end
         
+        % Child cost to reach from start
+        g = node_g+1;
+        
+        % Admissible heuristic
+        h = manhattan(child, goal, map);
+        
+        % Estimated path cost
+        f = g + HEU_INFLA*h;
+        
         % Insert child into open list 
-        open = pq_set(open,child,g,node);
+        open = pq_set(open,child,g,f,node);
         
     end
     
