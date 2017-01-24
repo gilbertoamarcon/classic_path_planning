@@ -1,7 +1,7 @@
-% function h = manhattan(a, b)
+% function h = euclidian(a, b)
 % Manhattan distance
 
-function h = manhattan(a, b, map)
+function h = euclidian(a, b, map)
 
     % coordinates for a
     [xa,ya] = state_from_index(map,a);
@@ -10,6 +10,6 @@ function h = manhattan(a, b, map)
     [xb,yb] = state_from_index(map,b);
     
     % Manhattan distance
-    h = abs(xa-xb) + abs(ya-yb)-1;
+    h = sqrt((xa-xb)^2+(ya-yb)^2);
 
 end

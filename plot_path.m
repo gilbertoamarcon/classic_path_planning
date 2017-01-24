@@ -17,6 +17,7 @@ colormap(bone);
 A= 1-colormap;
 colormap(A);
 title(title_name,'FontSize',20);
+axis square;
 
 for i = 1: size(XY,1)-1
     Cindex = mod(i,2);
