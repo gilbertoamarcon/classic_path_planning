@@ -6,18 +6,22 @@
 
 function pq = pq_swap(pq, i, j)
 
+    % Swapping ids
     swapi = pq.ids(j);
     pq.ids(j) = pq.ids(i);
     pq.ids(i) = swapi;
 
+    % Swapping g
     swapg = pq.g(j);
     pq.g(j) = pq.g(i);
     pq.g(i) = swapg;
 
+    % Swapping f
     swapf = pq.f(j);
     pq.f(j) = pq.f(i);
     pq.f(i) = swapf;
 
+    % Swapping parents
     swapp = pq.parents(j);
     pq.parents(j) = pq.parents(i);
     pq.parents(i) = swapp;

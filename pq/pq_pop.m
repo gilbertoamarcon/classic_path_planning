@@ -1,6 +1,6 @@
 % function [pq, res] = pq_pop(pq)
 % /**
-%      * Popping lowest cost element
+%      * Popping lowest f element
 %      */
 % Adapted from Yang Gu, 2006, ported from Geoff's pathplan code
 

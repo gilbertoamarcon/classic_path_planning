@@ -3,7 +3,7 @@ close all;
 clc;
 
 % Global parameters
-FILE_NAME	= 'maze2.pgm';
+FILE_NAME	= 'maze1.pgm';
 LIST_LIM	= 10000;
 IT_LIM      = 10000;
 HEU_INFLA   = 1.00;
@@ -89,11 +89,6 @@ for i=1:IT_LIM
     
 end
 
-num_expanded_nodes = i
-
-% Goal node
-node = pq_last(closed);
-
 % Path gathering loop
 for i=1:IT_LIM
     
@@ -112,6 +107,9 @@ for i=1:IT_LIM
     node = pq_parent(closed,node);
 
 end
+
+% Number of expanded nodes
+num_expanded_nodes = closed.size
 
 % Plotting path
 plot_path(map,path,'A-star');
