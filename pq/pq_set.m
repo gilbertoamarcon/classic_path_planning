@@ -8,15 +8,17 @@
 % By Yang Gu, 2006, ported from Geoff's pathplan code
 function pq = pq_set(pq, id, priority, parent)
 
-elemID = pq.directory(id);
-if elemID == pq.emptyID
-    pq = pq_insert(pq, id, priority, parent);
-elseif pq.priorities(elemID) < priority
-    pq.priorities(elemID) = priority;
-    pq= pq_percolateDown(pq, elemID);
-else
-    pq.priorities(elemID) = priority;
-    pq = pq_percolateUp(pq, elemID);
+    elemID = pq.directory(id);
+    if elemID == pq.emptyID
+        pq = pq_insert(pq, id, priority, parent);
+    elseif pq.priorities(elemID) < priority
+        pq.priorities(elemID) = priority;
+        pq= pq_percolateDown(pq, elemID);
+    else
+        pq.priorities(elemID) = priority;
+        pq = pq_percolateUp(pq, elemID);
+    end
+    
 end
 
 

@@ -10,18 +10,20 @@
 %      * element will be accessed sooner, which some might say is
 %      * reversed from the usual definition of priority.)
 %      */
-% By Yang Gu, 2006, ported from Geoff's pathplan code
+% Adapted from Yang Gu, 2006, ported from Geoff's pathplan code
+
 function pq = pq_insert(pq, id, priority, parent)
 
-pq.size = pq.size + 1;
+    pq.size = pq.size + 1;
 
-if pq.size > pq.maxsize
-    error('priority queue full');
+    if pq.size > pq.maxsize
+        error('priority queue full');
+    end
+
+    pq.parents(pq.size) = parent;
+    pq.priorities(pq.size) = priority;
+    pq.ids(pq.size) = id;
+    pq.directory(id) = pq.size;
+
+    pq = pq_percolateUp(pq, pq.size);
 end
-
-pq.parents(pq.size) = parent;
-pq.priorities(pq.size) = priority;
-pq.ids(pq.size) = id;
-pq.directory(id) = pq.size;
-
-pq = pq_percolateUp(pq, pq.size);

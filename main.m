@@ -15,7 +15,7 @@ addpath(genpath('pq'));
 map = read_map(FILE_NAME);
 
 % Getting start node
-[start,~] = get_start(map);
+start = get_start(map);
 
 % Getting goal node
 goal = get_goal(map);
@@ -39,8 +39,8 @@ for i=1:IT_LIM
     
     % Getting best node from open list attributes
     node = open.ids(1);
-    [node_g] = pq_priority(open, node);
-    [node_parent] = pq_parent(open, node);
+    node_g = pq_priority(open, node);
+    node_parent = pq_parent(open, node);
 
     % Popping best node from open list
     open = pq_pop(open);
@@ -55,7 +55,7 @@ for i=1:IT_LIM
     end
     
     % Expanding neighbors
-    [nbrs, ~] = get_neighbors(map, node);
+    nbrs = get_neighbors(map, node);
     
     % For each child neighbor
     for child = nbrs'
@@ -80,8 +80,10 @@ for i=1:IT_LIM
     
 end
 
+num_expanded_nodes = i
+
 % Goal node
-[node] = pq_last(closed);
+node = pq_last(closed);
 
 % Path gathering loop
 for i=1:IT_LIM
@@ -98,7 +100,7 @@ for i=1:IT_LIM
     end
     
     % Getting parent node
-    [node] = pq_parent(closed,node);
+    node = pq_parent(closed,node);
 
 end
 
