@@ -11,7 +11,7 @@ EPS_GREEDY  = 0.50;
 addpath(genpath('2D'));
 
 % Reading map file
-map = read_map(FILE_NAME);1
+map = read_map(FILE_NAME);
 close all;
 
 % Getting start node

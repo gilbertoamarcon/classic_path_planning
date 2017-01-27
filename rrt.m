@@ -26,7 +26,7 @@ function [path_size, path] = rrt(map, start, goal, step_size, eps_greedy)
 
         % Getting valid random sample
         while 1
-
+                    
             % Random sample
             if rand > eps_greedy
                 sample = [1+rand*(map.R-1),1+rand*(map.C-1)];
