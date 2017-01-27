@@ -4,7 +4,7 @@ clc;
 
 % Global parameters
 FILE_NAME	= 'maze2.pgm';
-EPSILON     = 10.000;
+EPSILON     = 1.000;
 
 % Libraries
 addpath(genpath('2D'));
@@ -21,7 +21,7 @@ start = get_start(map);
 goal = get_goal(map);
 
 % A*
-[num_expanded_nodes, path_size, path] = a_star(map, start, goal, EPSILON);
+[num_expanded_nodes, path_size, path] = a_star_2d(map, start, goal, EPSILON);
 
 % Results
 num_expanded_nodes

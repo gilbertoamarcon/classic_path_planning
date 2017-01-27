@@ -1,7 +1,7 @@
-% function [num_expanded_nodes, path_size, path] = a_star(map, start, goal, epsilon)
+% function [num_expanded_nodes, path_size, path] = a_star_2d(map, start, goal, epsilon)
 % A* with euclidian distance as admissible heuristic
 
-function [num_expanded_nodes, path_size, path] = a_star(map, start, goal, epsilon)
+function [num_expanded_nodes, path_size, path] = a_star_2d(map, start, goal, epsilon)
     
     clearvars closed open;
 
@@ -22,7 +22,7 @@ function [num_expanded_nodes, path_size, path] = a_star(map, start, goal, epsilo
     open = pq_init(LIST_LIM);
 
     % Starting node on open list
-    h = euclidian(start, goal, map);
+    h = euclidian_2d(start, goal, map);
     open = pq_set(open,start,0,h,0);
 
     % Search loop
@@ -70,7 +70,7 @@ function [num_expanded_nodes, path_size, path] = a_star(map, start, goal, epsilo
             end
 
             % Admissible heuristic
-            h = euclidian(child, goal, map);
+            h = euclidian_2d(child, goal, map);
 
             % Estimated path cost
             f = g + epsilon*h;

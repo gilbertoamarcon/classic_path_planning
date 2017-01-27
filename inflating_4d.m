@@ -3,7 +3,8 @@ close all;
 clc;
 
 % Global parameters
-OUT_FILE	= 'out.csv';
+OUT_FILE1	= 'out_4d1.csv';
+OUT_FILE2	= 'out_4d2.csv';
 FILE_NAME1	= 'maze1.pgm';1
 FILE_NAME2	= 'maze2.pgm';
 EPSILON     = 10.00;
@@ -11,7 +12,8 @@ IT_LIM      = 10000;
 
 % Test cases
 file_names = {FILE_NAME1,FILE_NAME2};
-time_lim = [0.050, 0.250, 2.000];
+out_names = {OUT_FILE1,OUT_FILE2};
+time_lim = [0.050, 0.250, 1.000];
 
 % Libraries
 addpath(genpath('2D'));
@@ -70,7 +72,7 @@ for k=1:size(file_names,2)
     epsilon_names = strread(num2str(final_epsilon,'%3.3f\n'),'%s');
     file_names{k}
     t = table(epsilon_names,exp_nodes,path_len)
-    writetable(t,OUT_FILE);
+    writetable(t,out_names{k});
 
 end
 
