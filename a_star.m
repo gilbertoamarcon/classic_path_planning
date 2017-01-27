@@ -1,5 +1,5 @@
 % function [num_expanded_nodes, path_size, path] = a_star(map, start, goal, epsilon)
-% A* with manhattan distance as admissible heuristic
+% A* with euclidian distance as admissible heuristic
 
 function [num_expanded_nodes, path_size, path] = a_star(map, start, goal, epsilon)
     
